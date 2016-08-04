@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'wiki/style.css' %}" />
+
+<a href=""><div class=logo></div></a>
+
+<div class=top><h1>Welcome</h1></div>
+
+<div class=left>
+	<table>
+	<tr><td><a href="">>index</a></td></tr>
+	<tr><td><a href="pokemons">list of pokemons</a></td></tr>
+	{% for pokemon in pokemon_list %}
+		<tr><td><a href="pokemons/{{ pokemon.pokedex }}/">-{{ pokemon }}</a></td></tr>
+	{% endfor %}
+	</table>
+</div>
+
+<div class=main>
+	<table>
+		<tr><td>You will be able to edit pokemons in database <a href="aoe/">here</a>.</td></tr>
+		<tr><td>What? You want more than <a href='pokemons'>Pokemons</a>?</td></tr>
+		<tr><td>What about some <a href='https://github.com/Brambor/Dogs-and-Sheeps'>Dogs&Sheep</a>?</td></tr>
+	</table>
+</div>

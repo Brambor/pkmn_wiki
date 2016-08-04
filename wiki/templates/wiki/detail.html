@@ -1,0 +1,30 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'wiki/style.css' %}" />
+
+<a href="../../"><div class=logo></div></a>
+
+<div class=top>
+	<h1>{{ pokemon }} (n.{{pokemon.pokedex}})</h1>
+	<table rulles=all><tr>{% if previous_exist %}<td><a href="{{previous_url}}">previous</a></td>{% endif %}{% if next_exist %}<td><a href="{{next_url}}">next</a></td>{% endif %}</tr></table>
+</div>
+
+<div class=left>
+	<table>
+	<tr><td><a href="../../">index</a></td></tr>
+	<tr><td><a href="../">list of pokemons</a></td></tr>
+	{% for pkmn in pokemon_list %}
+		<tr><td><a href="../{{ pkmn.pokedex }}/">{% if pkmn == pokemon %}>{% else %}-{% endif %}{{ pkmn }}</a></td></tr>
+	{% endfor %}
+	</table>
+</div>
+
+<div class=main>
+<img src="{% static pokemon.get_img %}" height=250/>
+<p><table frame=box rules=all bgcolor="#ccccff">
+	<tr><td align=right>pokedex index</td><td>{{ pokemon.pokedex }}</td></tr>
+	<tr><td align=right>pokemon name</td><td>{{ pokemon }}</td></tr>
+	<tr><td align=right>evolves from</td><td>{% if pokemon.evolve_from_fk != None %} <a href="../{{ pokemon.evolve_from_fk.pokedex }}/">{{pokemon.evolve_from_fk}} <img src="{% static pokemon.evolve_from_fk.get_img %}" height=16/></a> at level {{pokemon.evolve_from_at}}{% else %} Nobody {% endif %}</td></tr>
+	<tr><td align=right>evolves into</td><td>{% if pokemon.evolve_to_fk != None %} <a href="../{{ pokemon.evolve_to_fk.pokedex }}/">{{pokemon.evolve_to_fk}} <img src="{% static pokemon.evolve_to_fk.get_img %}" height=16/></a> at level {{pokemon.evolve_to_at}} {% else %} Nobody {% endif %}</td></tr>
+</table></p>
+</div>

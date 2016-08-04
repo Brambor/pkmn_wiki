@@ -1,0 +1,25 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'wiki/style.css' %}" />
+
+<a href="../"><div class=logo></div></a>
+
+<div class=top><h1>List of all Fire Red pokemons</h1></div>
+
+<div class=left>
+	<table>
+	<tr><td><a href="../">index</a></td></tr>
+	<tr><td><a href="">>list of pokemons</a></td></tr>
+	{% for pokemon in pokemon_list %}
+		<tr><td><a href="{{ pokemon.pokedex }}/">-{{ pokemon }}</a></td></tr>
+	{% endfor %}
+	</table>
+</div>
+
+<div class=main><p>This is the table of all available pokemons in 'Pokemons: Fire Red' that have been added so far:</p>
+<p><table frame=box rules=all bgcolor="#ccccff">
+	<tr><th>n.</th><th>name</th></tr>
+{% for pokemon in pokemon_list %}
+	<tr><td>{{ pokemon.pokedex }}</td><td><a href="{{ pokemon.pokedex }}/">{{ pokemon }}</a></td></tr>
+{% endfor %}
+</table>
+</div>

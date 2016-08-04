@@ -1,0 +1,39 @@
+a {
+	color: green
+}
+h1 {
+	margin-bottom: 0px;
+}
+body {
+	margin:0px;
+}
+
+.logo {
+	position:absolute;
+	left:0px; right:178px;
+	height: 84px;
+	background: url("images/pkmn_logo.png");
+	background-color: #b3b3ff;
+}
+
+.top {
+	position:absolute;
+	left:178px; right:0;
+	height: 84px;
+	background-color: #ccccff;
+}
+
+.left {
+	position:absolute;
+	left:0; top:84px; bottom: 0;
+	width: 178px;
+	background-color: #ccccff;
+}
+
+.main {
+	position: absolute;
+	left:178px; top:84px; right:0; bottom:0;
+	background-color: blue;
+	background: url("images/bigball.png");
+	background-color: #ccccff;
+}
