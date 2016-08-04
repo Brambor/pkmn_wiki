@@ -121,6 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'wiki/static/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'wiki/static/images/')
 
 MEDIA_URL = '/media/'
