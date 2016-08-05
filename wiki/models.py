@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 class Pokemons(models.Model):
-	pokedex = models.IntegerField(default=0)
+	pokedex = models.IntegerField(default=0, unique=True)
 	pokemon_name = models.CharField(max_length=20)
 	pokemon_img = models.CharField(max_length=24)
 	evolve_from_at = models.IntegerField(default=0)

@@ -36,6 +36,7 @@
 			<input type="submit" name="button" value="delete" />
 		</form>
 		{% if done %}<p>Saved successfully</p>{% endif %}
+		{{error}}
 
 	{% elif action == "create" %}
 		<form enctype="multipart/form-data" action="" method="post">

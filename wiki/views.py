@@ -32,20 +32,27 @@ def edit_view(request, action = None, pokedex = None):
 	context = { "pokemon_list": Pokemons.objects.all(),
 				"action": action}	
 	if request.method == "POST":
-		if action == "edit":
-			f = PokemonForm(request.POST, files = request.FILES, instance = get_object_or_404(Pokemons, pokedex=pokedex))
-			if f.is_valid():
-				context["done"] = True
-				f.save()
-		elif action == "create":
-			f = PokemonForm(request.POST)
-			if f.is_valid():
-				context["done"] = True
-				f.save()
 		if request.POST.get("button") == "delete":
 			context["done"] = True
 			Pokemons.objects.filter(pokedex=pokedex)[0].delete()
 			return HttpResponseRedirect("/wiki/aoe/edit/")
+		if action == "edit":
+			f = PokemonForm(request.POST, files = request.FILES, instance = Pokemons.objects.filter(pokedex = pokedex)[0])
+			if f.is_valid():
+				if (not Pokemons.objects.filter(pokedex = request.POST.get("pokedex")).exists()) or (request.POST.get("pokedex") == pokedex):
+					context["done"] = True
+					f.save()
+					return HttpResponseRedirect("../{}".format(request.POST.get("pokedex")))
+				else:
+					context["error"] = "This pokedex is occupied."
+		elif action == "create":
+			f = PokemonForm(request.POST)
+			if f.is_valid():
+				if not Pokemons.objects.filter(pokedex = request.POST.get("pokedex")).exists():
+					context["done"] = True
+					f.save()
+				else:
+					context["error"] = "This pokedex is occupied."
 
 	if pokedex:
 		context["pokemon"], pokemon = [get_object_or_404(Pokemons, pokedex=pokedex)]*2
