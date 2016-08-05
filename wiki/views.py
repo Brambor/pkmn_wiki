@@ -33,7 +33,7 @@ def edit_view(request, action = None, pokedex = None):
 				"action": action}	
 	if request.method == "POST":
 		if action == "edit":
-			f = PokemonForm(request.POST, instance = get_object_or_404(Pokemons, pokedex=pokedex))
+			f = PokemonForm(request.POST, files = request.FILES, instance = get_object_or_404(Pokemons, pokedex=pokedex))
 			if f.is_valid():
 				context["done"] = True
 				f.save()

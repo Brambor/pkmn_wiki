@@ -27,7 +27,7 @@
 	</table>
 
 	{% elif pokemon != None %}
-		<form action="" method="post">
+		<form enctype="multipart/form-data" action="" method="post">
 			{% csrf_token %}
 			<table frame=box rules=all bgcolor="#ccccff">
 				{{ form }}
@@ -38,7 +38,7 @@
 		{% if done %}<p>Saved successfully</p>{% endif %}
 
 	{% elif action == "create" %}
-		<form action="" method="post">
+		<form enctype="multipart/form-data" action="" method="post">
 			{% csrf_token %}
 			<table frame=box rules=all bgcolor="#ccccff">
 				{{ form }}
@@ -47,7 +47,7 @@
 		</form>
 
 	{% elif action == "edit" %}
-	<table frame=box rules=all bgcolor="#ccccff">
+	<table enctype="multipart/form-data" frame=box rules=all bgcolor="#ccccff">
 		<tr><th>n.</th><th>name</th></tr>
 		{% for pokemon in pokemon_list %}
 		<tr><td>{{ pokemon.pokedex }}</td><td><a href="{{ pokemon.pokedex }}/">{{ pokemon }}</a></td></tr>
