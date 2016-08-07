@@ -46,7 +46,7 @@ def edit_view(request, action = None, pokedex = None):
 				else:
 					context["error"] = "This pokedex is occupied."
 		elif action == "create":
-			f = PokemonForm(request.POST)
+			f = PokemonForm(request.POST, files = request.FILES)
 			if f.is_valid():
 				if not Pokemons.objects.filter(pokedex = request.POST.get("pokedex")).exists():
 					context["done"] = True
