@@ -24,7 +24,7 @@
 <p><table frame=box rules=all bgcolor="#ccccff">
 	<tr><td align=right>pokedex index</td><td>{{ pokemon.pokedex }}</td></tr>
 	<tr><td align=right>pokemon name</td><td>{{ pokemon }}</td></tr>
-	<tr><td align=right>evolves from</td><td>{% if pokemon.evolve_from_fk != None %} <a href="../{{ pokemon.evolve_from_fk.pokedex }}/">{{pokemon.evolve_from_fk}} <img src="{{ pokemon.evolve_from_fk.get_img }}" height=16/></a> at level {{pokemon.evolve_from_at}}{% else %} Nobody {% endif %}</td></tr>
-	<tr><td align=right>evolves into</td><td>{% if pokemon.evolve_to_fk != None %} <a href="../{{ pokemon.evolve_to_fk.pokedex }}/">{{pokemon.evolve_to_fk}} <img src="{{ pokemon.evolve_to_fk.get_img }}" height=16/></a> at level {{pokemon.evolve_to_at}} {% else %} Nobody {% endif %}</td></tr>
+	{% if pokemon.evolve_from_fk != None %}<tr><td align=right>evolves from</td><td> <a href="../{{ pokemon.evolve_from_fk.pokedex }}/">{{pokemon.evolve_from_fk}} <img src="{{ pokemon.evolve_from_fk.get_img }}" height=16/></a> at level {{pokemon.evolve_from_at}}</td></tr>{% endif %}
+	{% if pokemon.evolve_to_fk != None %}<tr><td align=right>evolves into</td><td><a href="../{{ pokemon.evolve_to_fk.pokedex }}/">{{pokemon.evolve_to_fk}} <img src="{{ pokemon.evolve_to_fk.get_img }}" height=16/></a> at level {{pokemon.evolve_to_at}}</td></tr>{% endif %}
 </table></p>
 </div>
