@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'wiki/style.css' %}" />
+
+<a href="../"><div class=logo></div></a>
+
+<div class=top><h1>History</h1></div>
+
+<div class=left>
+	<table>
+	<tr><td><a href="../">Main menu</a></td></tr>
+	<tr><td><a href="../pokemons">List of pokemons</a></td></tr>
+	{% for pokemon in pokemon_list %}
+		<tr><td><a href="../pokemons/{{ pokemon.pokedex }}/">-{{ pokemon }}</a></td></tr>
+	{% endfor %}
+	</table>
+</div>
+
+<div class=main>
+	<p>There are all the changes.</p>
+	{% for ch in Changes %}
+	<p><table frame=box rules=all bgcolor="#ccccff" style="float: left;">
+		<tr><td><a href="../pokemons/{{ ch.pokedex }}/">{{ ch.name }}</a></td></tr>
+		<tr><td>changed at {{ch.time}}</td></tr>
+		{% if ch.evolve_from_fk != None %}<tr><td>evolve from <a href="../pokemons/{{ ch.evolve_from_fk.pokedex }}/">{{ch.evolve_from_fk.name}}</a> <img src="{{ ch.evolve_from_fk.get_img }}" height=16/> at {{ch.evolve_from_at}}</td></tr>{% endif %}
+		{% if ch.evolve_to_fk != None %}<tr><td>evolve to <a href="../pokemons/{{ ch.evolve_to_fk.pokedex }}/">{{ch.evolve_from_fk.name}}</a> <img src="{{ ch.evolve_to_fk.get_img }}" height=16/> at {{ch.evolve_to_at}}</td></tr>{% endif %}
+		<tr><td><p style:"margin:0px">image</p><img src="{{ ch.get_img }}" height=250/></td></tr>
+	</table></p>
+	{% endfor %}
+</div>

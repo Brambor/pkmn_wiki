@@ -37,3 +37,10 @@ class Change(models.Model):
 	evolve_to_at = models.IntegerField(default=0)
 	evolve_to_fk = models.ForeignKey("Pokemons", related_name="to_ch", null=True, blank=True, on_delete=models.SET_NULL)
 	image = models.ImageField(null=True, default=None, blank = True)
+	def get_img(self):
+		return self.image.url
+
+class Pictures(models.Model):
+	image = models.ImageField()
+	def get_img(self):
+		return self.image.url

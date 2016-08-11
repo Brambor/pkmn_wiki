@@ -1,18 +1,17 @@
 {% load staticfiles %}
-
 <link rel="stylesheet" type="text/css" href="{% static 'wiki/style.css' %}" />
 
 <a href="../../"><div class=logo></div></a>
 
 <div class=top>
-	<h1>{{ pokemon }} (n.{{pokemon.pokedex}})</h1>
+	<h1>{{ pokemon }} (n.{{pokemon.pokedex}}) <a href="../../aoe/edit/{{pokemon.pokedex}}"><img src="{{pen.get_img}}" height=12/></a></h1>
 	<table rulles=all><tr>{% if previous_exist %}<td><a href="{{previous_url}}">previous</a></td>{% endif %}{% if next_exist %}<td><a href="{{next_url}}">next</a></td>{% endif %}</tr></table>
 </div>
 
 <div class=left>
 	<table>
-	<tr><td><a href="../../">index</a></td></tr>
-	<tr><td><a href="../">list of pokemons</a></td></tr>
+	<tr><td><a href="../../">Main menu</a></td></tr>
+	<tr><td><a href="../">List of pokemons</a></td></tr>
 	{% for pkmn in pokemon_list %}
 		<tr><td><a href="../{{ pkmn.pokedex }}/">{% if pkmn == pokemon %}>{% else %}-{% endif %}{{ pkmn }}</a></td></tr>
 	{% endfor %}

@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render
 from django.template import loader
 
 from .forms import PokemonForm
-from .models import Pokemons
+from .models import Pokemons, Change, Pictures
 
 def index_view(request):
 	context = { "pokemon_list" : Pokemons.objects.all()}
@@ -19,7 +19,9 @@ def pokemon_list_view(request):
 def pokemon_view(request, pokedex):
 	pokemon = get_object_or_404(Pokemons, pokedex=pokedex)
 	template = loader.get_template('wiki/detail.html')
-	context = {"pokemon" : pokemon, "pokemon_list" : Pokemons.objects.all()}
+	context = { "pokemon" : pokemon,
+				"pokemon_list" : Pokemons.objects.all(),
+				"pen" : Pictures.objects.first()}
 	context["previous_exist"], context["next_exist"] = False, False
 	context["previous_url"], context["next_url"] = "../{}".format(pokemon.pokedex - 1), "../{}".format(pokemon.pokedex + 1)
 	if Pokemons.objects.all().filter(pokedex=int(pokedex)-1):
@@ -71,4 +73,10 @@ def edit_view(request, action = None, pokedex = None):
 	template = loader.get_template('wiki/pkmn_aoe.html')
 	#form = PokemonForm(request.POST)
 	#context["form"] = form
+	return HttpResponse(template.render(context, request))
+
+def history_view(request):
+	template = loader.get_template('wiki/history.html')
+	context = { "Changes" : Change.objects.all(),
+				"pokemon_list" : Pokemons.objects.all()}
 	return HttpResponse(template.render(context, request))
